@@ -1,9 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:money_app/widgets/button.dart' show Button;
+import 'package:money_app/widgets/currency_card.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+var dummyCurrency = [
+  Currency(
+    currency: 'Euro',
+    unit: 'EUR',
+    amount: 6428,
+    icon: Icons.euro,
+  ),
+  Currency(
+    currency: 'Dollar',
+    unit: 'USD',
+    amount: 55622,
+    icon: Icons.attach_money,
+  ),
+  Currency(
+    currency: 'Rupee',
+    unit: 'INR',
+    amount: 5534622,
+    icon: Icons.currency_rupee,
+  ),
+];
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -110,75 +132,11 @@ class MyApp extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              Container(
-                decoration: const BoxDecoration(
-                  color: Color(0xff1f2123),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20),
-                    topRight: Radius.elliptical(60, 40),
-                    bottomLeft: Radius.elliptical(60, 40),
-                  ),
-                ),
-                padding: const EdgeInsets.only(
-                  top: 24,
-                  bottom: 32,
-                  left: 16,
-                  right: 16,
-                ),
-                clipBehavior: Clip.hardEdge,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Euro',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Row(
-                          children: [
-                            const Text(
-                              '6 428',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              'EUR',
-                              style: TextStyle(
-                                color: Colors.white.withOpacity(0.7),
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    Transform(
-                      transform: Matrix4.identity()
-                        ..translate(-5.0, 30.0)
-                        ..scale(2.5, 2.5, 2.5),
-                      alignment: Alignment.center,
-                      child: const Icon(
-                        Icons.euro,
-                        color: Colors.white,
-                        size: 80,
-                      ),
-                    ),
-                  ],
-                ),
+              ...List.generate(
+                dummyCurrency.length,
+                (index) => CurrencyCard(
+                    currencyData: dummyCurrency[index],
+                    isInverted: index.isOdd),
               )
             ],
           ),
