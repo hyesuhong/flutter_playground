@@ -1,11 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:webtoon_app/models/toon_model.dart';
+import 'package:webtoon_app/services/api_service.dart';
 import 'package:webtoon_app/styles/font.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  List<ToonModel> toons = [];
+  bool isLoading = false;
+
+  void getToonData() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      var data = await ApiService.getTodayToons();
+      setState(() {
+        toons = data;
+      });
+    } catch (error) {
+      print('$error');
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    getToonData();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print(toons);
+    print(isLoading);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
