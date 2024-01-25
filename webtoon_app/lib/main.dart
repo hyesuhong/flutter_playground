@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: CustomFontFamily.notoSansKR,
       ),
-      home: const Home(),
+      home: Home(),
     );
   }
 }
