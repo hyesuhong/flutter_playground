@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webtoon_app/models/toon_model.dart';
-import 'package:webtoon_app/screens/detail.dart';
+import 'package:webtoon_app/screens/detail_screen.dart';
 import 'package:webtoon_app/styles/font.dart';
 import 'package:webtoon_app/widgets/thumbnail.dart';
 
