@@ -4,10 +4,12 @@ import 'package:webtoon_app/styles/font.dart';
 class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final double headerHeight = 56;
+  final List<Widget>? actions;
 
   const HeaderBar({
     super.key,
     required this.title,
+    this.actions,
   });
 
   @override
@@ -20,6 +22,7 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
         backgroundColor: Colors.white,
         foregroundColor: Colors.grey[600],
         elevation: 5,
+        actions: actions,
         title: Text(
           title,
           style: const TextStyle(
