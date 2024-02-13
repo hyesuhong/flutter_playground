@@ -3,6 +3,7 @@ import 'package:webtoon_app/models/toon_detail_model.dart';
 import 'package:webtoon_app/models/toon_episode_model.dart';
 import 'package:webtoon_app/services/api_service.dart';
 import 'package:webtoon_app/styles/font.dart';
+import 'package:webtoon_app/widgets/episode_item.dart';
 import 'package:webtoon_app/widgets/header_bar.dart';
 import 'package:webtoon_app/widgets/thumbnail.dart';
 
@@ -179,40 +180,7 @@ Widget buildEpisodesList(List<ToonEpisodeModel> episodes) {
     physics: const NeverScrollableScrollPhysics(),
     itemCount: episodes.length,
     itemBuilder: (context, index) {
-      return Container(
-        height: 64,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Row(
-          children: [
-            SizedBox(
-              width: 80,
-              child: Image.network(
-                episodes[index].thumb,
-                headers: const {
-                  "User-Agent":
-                      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
-                },
-              ),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(episodes[index].title),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Text(episodes[index].date),
-                ],
-              ),
-            )
-          ],
-        ),
-      );
+      return EpisodeItem(episode: episodes[index]);
     },
     separatorBuilder: (context, index) {
       return const SizedBox(height: 10);
