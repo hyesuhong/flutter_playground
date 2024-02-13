@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:webtoon_app/models/toon_episode_model.dart';
 
 class EpisodeItem extends StatelessWidget {
   final ToonEpisodeModel episode;
+  final String toonId;
+
   const EpisodeItem({
     super.key,
     required this.episode,
+    required this.toonId,
   });
 
-  void onTap() {
-    print('tap');
+  void onTap() async {
+    await launchUrlString(
+        'https://comic.naver.com/webtoon/detail?titleId=$toonId&no=${episode.id}');
   }
 
   @override
