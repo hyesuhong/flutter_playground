@@ -37,37 +37,43 @@ class _NavigationScreenState extends State<NavigationScreen> {
           size: 32,
         ),
       ),
-      body: Stack(
-        children: [
-          Offstage(
-            offstage: _selectedIndex != 0,
-            child: const HomeScreen(),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 1,
-            child: const PlaceholderScreen(
-              placeholder: "Search",
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 16,
+        ),
+        child: Stack(
+          children: [
+            Offstage(
+              offstage: _selectedIndex != 0,
+              child: const HomeScreen(),
             ),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 2,
-            child: const PlaceholderScreen(
-              placeholder: "Posting",
+            Offstage(
+              offstage: _selectedIndex != 1,
+              child: const PlaceholderScreen(
+                placeholder: "Search",
+              ),
             ),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 3,
-            child: const PlaceholderScreen(
-              placeholder: "Likes",
+            Offstage(
+              offstage: _selectedIndex != 2,
+              child: const PlaceholderScreen(
+                placeholder: "Posting",
+              ),
             ),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 4,
-            child: const PlaceholderScreen(
-              placeholder: "Profile",
+            Offstage(
+              offstage: _selectedIndex != 3,
+              child: const PlaceholderScreen(
+                placeholder: "Likes",
+              ),
             ),
-          ),
-        ],
+            Offstage(
+              offstage: _selectedIndex != 4,
+              child: const PlaceholderScreen(
+                placeholder: "Profile",
+              ),
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         child: Row(

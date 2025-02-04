@@ -1,14 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:thread_clone/models/post_model.dart';
+import 'package:thread_clone/widgets/post_content.dart';
+
+List<PostModel> _posts = List.generate(
+  20,
+  // ignore: avoid_types_as_parameter_names
+  (int) => PostModel.generate(),
+);
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Center(
-        child: Text("home"),
-      ),
+    return ListView.separated(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        PostModel post = _posts[index];
+        return PostContent(
+          profileUrl: post.profileUrl,
+          username: post.username,
+          createdAt: post.createdAt,
+          contentText: post.contentText,
+          contentImageUrls: post.contentImageUrls,
+          replies: post.replies,
+          likes: post.likes,
+        );
+      },
+      separatorBuilder: (context, index) {
+        return const Divider();
+      },
+      itemCount: _posts.length,
     );
   }
 }
