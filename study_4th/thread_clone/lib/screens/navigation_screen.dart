@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:thread_clone/screens/home_screen.dart';
+import 'package:thread_clone/screens/placeholder_screen.dart';
 import 'package:thread_clone/widgets/nav_tab.dart';
 
 const tabIcons = [
@@ -29,6 +31,44 @@ class _NavigationScreenState extends State<NavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const FaIcon(
+          FontAwesomeIcons.threads,
+          size: 32,
+        ),
+      ),
+      body: Stack(
+        children: [
+          Offstage(
+            offstage: _selectedIndex != 0,
+            child: const HomeScreen(),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 1,
+            child: const PlaceholderScreen(
+              placeholder: "Search",
+            ),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 2,
+            child: const PlaceholderScreen(
+              placeholder: "Posting",
+            ),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 3,
+            child: const PlaceholderScreen(
+              placeholder: "Likes",
+            ),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 4,
+            child: const PlaceholderScreen(
+              placeholder: "Profile",
+            ),
+          ),
+        ],
+      ),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

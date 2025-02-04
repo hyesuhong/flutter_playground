@@ -14,6 +14,10 @@ class MyApp extends StatelessWidget {
       title: 'Thread clone',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          color: Colors.white,
+          elevation: 0,
+        ),
         bottomAppBarTheme: const BottomAppBarTheme(
           elevation: 0,
           color: Colors.white,
