@@ -24,6 +24,11 @@ class MyApp extends StatelessWidget {
           color: Colors.white,
           padding: EdgeInsets.all(2),
         ),
+        bottomSheetTheme: BottomSheetThemeData(
+          backgroundColor: Colors.white,
+          showDragHandle: true,
+          dragHandleColor: Colors.grey.shade400,
+        ),
         useMaterial3: true,
       ),
       home: const NavigationScreen(),

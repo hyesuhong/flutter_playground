@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:thread_clone/utils/format.dart';
 import 'package:thread_clone/widgets/post_icon_button.dart';
+import 'package:thread_clone/widgets/post_more_menu.dart';
 import 'package:thread_clone/widgets/user_profile.dart';
 
 class PostContent extends StatelessWidget {
@@ -23,6 +24,13 @@ class PostContent extends StatelessWidget {
     required this.replies,
     required this.likes,
   });
+
+  void _onMoreTap(context) async {
+    await showModalBottomSheet(
+      context: context,
+      builder: (context) => const PostMoreMenu(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +61,9 @@ class PostContent extends StatelessWidget {
                         ),
                         Text(formatDate(createdAt)),
                         const SizedBox(width: 8),
-                        const PostIconButton(
+                        PostIconButton(
                           icon: FontAwesomeIcons.ellipsis,
+                          onTap: () => _onMoreTap(context),
                         )
                       ],
                     ),
