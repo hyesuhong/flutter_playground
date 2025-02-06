@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:thread_clone/widgets/post_report_menu.dart';
 
 class PostMoreMenu extends StatelessWidget {
   const PostMoreMenu({super.key});
+
+  void _onReportTap(BuildContext context) {
+    Navigator.pop(context);
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => const PostReportMenu(),
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height * 0.73,
+      ),
+      isScrollControlled: true,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +66,7 @@ class PostMoreMenu extends StatelessWidget {
                 _buildMoreItem(
                   label: "Report",
                   isDangerous: true,
+                  onTap: () => _onReportTap(context),
                 ),
               ],
             ),
