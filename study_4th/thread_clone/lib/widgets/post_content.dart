@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:thread_clone/utils/format.dart';
+import 'package:thread_clone/widgets/post_icon_button.dart';
+import 'package:thread_clone/widgets/user_profile.dart';
 
 class PostContent extends StatelessWidget {
   final String profileUrl;
@@ -33,17 +35,7 @@ class PostContent extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  Container(
-                    width: 48,
-                    height: 48,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(profileUrl),
-                        fit: BoxFit.cover,
-                      ),
-                      borderRadius: BorderRadius.circular(48),
-                    ),
-                  ),
+                  UserProfile(imageUrl: profileUrl),
                   const SizedBox(
                     height: 8,
                   ),
@@ -60,8 +52,10 @@ class PostContent extends StatelessWidget {
                           child: Text(username),
                         ),
                         Text(formatDate(createdAt)),
-                        const SizedBox(width: 16),
-                        const FaIcon(FontAwesomeIcons.ellipsis),
+                        const SizedBox(width: 8),
+                        const PostIconButton(
+                          icon: FontAwesomeIcons.ellipsis,
+                        )
                       ],
                     ),
                     const SizedBox(height: 2),
@@ -91,30 +85,26 @@ class PostContent extends StatelessWidget {
                     const SizedBox(height: 16),
                     const Row(
                       children: [
-                        FaIcon(
-                          FontAwesomeIcons.heart,
-                          size: 20,
+                        PostIconButton(
+                          icon: FontAwesomeIcons.heart,
                         ),
                         SizedBox(
                           width: 12,
                         ),
-                        FaIcon(
-                          FontAwesomeIcons.comment,
-                          size: 20,
+                        PostIconButton(
+                          icon: FontAwesomeIcons.comment,
                         ),
                         SizedBox(
                           width: 12,
                         ),
-                        FaIcon(
-                          FontAwesomeIcons.retweet,
-                          size: 20,
+                        PostIconButton(
+                          icon: FontAwesomeIcons.retweet,
                         ),
                         SizedBox(
                           width: 12,
                         ),
-                        FaIcon(
-                          FontAwesomeIcons.paperPlane,
-                          size: 20,
+                        PostIconButton(
+                          icon: FontAwesomeIcons.paperPlane,
                         ),
                       ],
                     )
