@@ -11,3 +11,24 @@ String addZero(int num) {
 
   return numToStr.padLeft(2, "0");
 }
+
+const compactDecimal = [
+  {"value": 1, "suffix": ""},
+  {"value": 1e3, "suffix": "K"},
+  {"value": 1e6, "suffix": "M"},
+];
+
+String formatCompactNumber(int num) {
+  var targetCompactor = compactDecimal
+      .lastWhere((compactor) => num >= (compactor["value"] as double));
+
+  double compactorValue = targetCompactor["value"] as double;
+  String compactorSuffix = targetCompactor["suffix"] as String;
+
+  String convertedNumToStr =
+      (num / compactorValue).toStringAsFixed(1) + compactorSuffix;
+
+  print(num);
+  print(targetCompactor.toString());
+  return convertedNumToStr;
+}

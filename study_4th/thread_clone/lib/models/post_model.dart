@@ -3,11 +3,13 @@ import 'package:faker/faker.dart';
 class PostModel {
   final String profileUrl;
   final String username;
+  final String description;
   final DateTime createdAt;
   final String contentText;
   final List<String> contentImageUrls;
   final int replies;
   final int likes;
+  final int followers;
 
   PostModel({
     required this.profileUrl,
@@ -17,6 +19,8 @@ class PostModel {
     required this.contentImageUrls,
     required this.replies,
     required this.likes,
+    required this.description,
+    required this.followers,
   });
 
   factory PostModel.generate() {
@@ -32,6 +36,7 @@ class PostModel {
       profileUrl:
           "https://i.pravatar.cc/150?img=${faker.randomGenerator.integer(50)}",
       username: faker.internet.userName(),
+      description: faker.lorem.sentence(),
       createdAt: faker.date.dateTime(
         minYear: 2024,
         maxYear: 2025,
@@ -40,6 +45,7 @@ class PostModel {
       contentImageUrls: images,
       replies: faker.randomGenerator.integer(50),
       likes: faker.randomGenerator.integer(100),
+      followers: faker.randomGenerator.integer(10000000, min: 100),
     );
   }
 }
