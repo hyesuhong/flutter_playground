@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:thread_clone/screens/home_screen.dart';
 import 'package:thread_clone/screens/placeholder_screen.dart';
+import 'package:thread_clone/screens/writing_screen.dart';
 import 'package:thread_clone/widgets/nav_tab.dart';
 
 const tabIcons = [
@@ -26,6 +27,25 @@ class _NavigationScreenState extends State<NavigationScreen> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  void _onWritingTap() async {
+    await showModalBottomSheet(
+      context: context,
+      builder: (context) => const WritingScreen(),
+      showDragHandle: false,
+      enableDrag: false,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
+      ),
+      clipBehavior: Clip.hardEdge,
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height * 0.9,
+      ),
+      isScrollControlled: true,
+    );
   }
 
   @override
@@ -82,7 +102,14 @@ class _NavigationScreenState extends State<NavigationScreen> {
             return NavTab(
               icon: tabIcons[index],
               isSelected: _selectedIndex == index,
-              onTap: () => _onNavigationTap(index),
+              onTap: () {
+                if (index == 2) {
+                  _onWritingTap();
+                  return;
+                }
+
+                _onNavigationTap(index);
+              },
             );
           }),
         ),
