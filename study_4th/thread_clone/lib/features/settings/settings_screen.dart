@@ -3,12 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/privacy/privacy_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   void _onBackTap(BuildContext context) {
     Navigator.of(context).pop();
+  }
+
+  void _onPrivacyTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const PrivacyScreen(),
+      ),
+    );
   }
 
   void _onLogoutTap(BuildContext context) {
@@ -95,6 +104,9 @@ class SettingsScreen extends StatelessWidget {
                 return ListTile(
                   title: Text(item.label),
                   leading: FaIcon(item.icon),
+                  onTap: item.label == "Privacy"
+                      ? () => _onPrivacyTap(context)
+                      : null,
                 );
               },
               itemCount: _items.length,
