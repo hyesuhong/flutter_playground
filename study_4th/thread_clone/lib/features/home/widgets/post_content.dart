@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:thread_clone/common/button/custom_icon_button.dart';
+import 'package:thread_clone/common/user_profile/user_profile.dart';
+import 'package:thread_clone/constants/gaps.dart';
+import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/home/widgets/post_more_menu.dart';
 import 'package:thread_clone/utils/format.dart';
-import 'package:thread_clone/widgets/post_icon_button.dart';
-import 'package:thread_clone/widgets/post_more_menu.dart';
-import 'package:thread_clone/widgets/user_profile.dart';
 
 class PostContent extends StatelessWidget {
   final String profileUrl;
@@ -35,7 +37,7 @@ class PostContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(Sizes.size8),
       child: Column(
         children: [
           Row(
@@ -44,12 +46,10 @@ class PostContent extends StatelessWidget {
               Column(
                 children: [
                   UserProfile(imageUrl: profileUrl),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  Gaps.v8,
                 ],
               ),
-              const SizedBox(width: 16),
+              Gaps.h16,
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,29 +60,30 @@ class PostContent extends StatelessWidget {
                           child: Text(username),
                         ),
                         Text(formatDate(createdAt)),
-                        const SizedBox(width: 8),
-                        PostIconButton(
+                        Gaps.h8,
+                        CustomIconButton(
                           icon: FontAwesomeIcons.ellipsis,
                           onTap: () => _onMoreTap(context),
                         )
                       ],
                     ),
-                    const SizedBox(height: 2),
+                    Gaps.v2,
                     Text(contentText),
-                    const SizedBox(height: 8),
+                    Gaps.h8,
                     if (contentImageUrls.isNotEmpty)
                       SizedBox(
-                        height: 256,
+                        height: Sizes.size64 * 4,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: contentImageUrls.length,
                           itemBuilder: (context, imgIndex) {
                             return Padding(
                               padding: const EdgeInsets.only(
-                                right: 12,
+                                right: Sizes.size12,
                               ),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius:
+                                    BorderRadius.circular(Sizes.size8),
                                 child: Image.network(
                                   contentImageUrls[imgIndex],
                                 ),
@@ -91,28 +92,22 @@ class PostContent extends StatelessWidget {
                           },
                         ),
                       ),
-                    const SizedBox(height: 16),
+                    Gaps.v16,
                     const Row(
                       children: [
-                        PostIconButton(
+                        CustomIconButton(
                           icon: FontAwesomeIcons.heart,
                         ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        PostIconButton(
+                        Gaps.h12,
+                        CustomIconButton(
                           icon: FontAwesomeIcons.comment,
                         ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        PostIconButton(
+                        Gaps.h12,
+                        CustomIconButton(
                           icon: FontAwesomeIcons.retweet,
                         ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        PostIconButton(
+                        Gaps.h12,
+                        CustomIconButton(
                           icon: FontAwesomeIcons.paperPlane,
                         ),
                       ],
@@ -122,12 +117,10 @@ class PostContent extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(
-            height: 4,
-          ),
+          Gaps.v4,
           Row(
             children: [
-              const SizedBox(width: 64),
+              Gaps.h64,
               Text(
                 "$replies replies",
                 style: TextStyle(
@@ -135,7 +128,7 @@ class PostContent extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
+                padding: const EdgeInsets.symmetric(horizontal: Sizes.size4),
                 child: Text(
                   "•",
                   style: TextStyle(

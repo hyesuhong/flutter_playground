@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thread_clone/screens/navigation_screen.dart';
+import 'package:thread_clone/common/main_navigation/main_navigation_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const NavigationScreen(),
+      home: const MainNavigationScreen(),
     );
   }
 }

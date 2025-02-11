@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:thread_clone/screens/activity_screen.dart';
-import 'package:thread_clone/screens/home_screen.dart';
-import 'package:thread_clone/screens/placeholder_screen.dart';
-import 'package:thread_clone/screens/search_screen.dart';
-import 'package:thread_clone/screens/writing_screen.dart';
-import 'package:thread_clone/widgets/nav_tab.dart';
+import 'package:thread_clone/common/main_navigation/widgets/nav_tab.dart';
+import 'package:thread_clone/common/main_navigation/widgets/placeholder_screen.dart';
+import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/activity/activity_screen.dart';
+import 'package:thread_clone/features/home/home_screen.dart';
+import 'package:thread_clone/features/search/search_screen.dart';
+import 'package:thread_clone/features/writing/writing_screen.dart';
 
 const tabIcons = [
   FontAwesomeIcons.house,
@@ -15,14 +16,14 @@ const tabIcons = [
   FontAwesomeIcons.user,
 ];
 
-class NavigationScreen extends StatefulWidget {
-  const NavigationScreen({super.key});
+class MainNavigationScreen extends StatefulWidget {
+  const MainNavigationScreen({super.key});
 
   @override
-  State<NavigationScreen> createState() => _NavigationScreenState();
+  State<MainNavigationScreen> createState() => _MainNavigationScreenState();
 }
 
-class _NavigationScreenState extends State<NavigationScreen> {
+class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selectedIndex = 0;
 
   void _onNavigationTap(int index) {
@@ -39,7 +40,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
       enableDrag: false,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
-          top: Radius.circular(20),
+          top: Radius.circular(Sizes.size20),
         ),
       ),
       clipBehavior: Clip.hardEdge,

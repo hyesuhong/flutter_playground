@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:thread_clone/constants/gaps.dart';
 
 class NavTab extends StatelessWidget {
   final IconData icon;
@@ -28,7 +29,7 @@ class NavTab extends StatelessWidget {
                 icon,
                 color: Colors.black,
               ),
-              const SizedBox(height: 4),
+              Gaps.v4,
             ],
           ),
         ),

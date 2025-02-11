@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:thread_clone/models/post_model.dart';
-import 'package:thread_clone/widgets/post_content.dart';
+import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/home/models/post_model.dart';
+import 'package:thread_clone/features/home/widgets/post_content.dart';
 
 List<PostModel> _posts = List.generate(
   20,
-  // ignore: avoid_types_as_parameter_names
-  (int) => PostModel.generate(),
+  (index) => PostModel.generate(),
 );
 
 class HomeScreen extends StatelessWidget {
@@ -18,22 +18,19 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const FaIcon(
           FontAwesomeIcons.threads,
-          size: 32,
+          size: Sizes.size32,
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 16,
-        ),
+        padding: const EdgeInsets.all(Sizes.size16),
         child: ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, index) {
             PostModel post = _posts[index];
             return PostContent(
-              profileUrl: post.profileUrl,
-              username: post.username,
+              profileUrl: post.user.profileUrl,
+              username: post.user.username,
               createdAt: post.createdAt,
               contentText: post.contentText,
               contentImageUrls: post.contentImageUrls,

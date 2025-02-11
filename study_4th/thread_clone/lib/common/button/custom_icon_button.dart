@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:thread_clone/constants/sizes.dart';
 
-class PostIconButton extends StatelessWidget {
+class CustomIconButton extends StatelessWidget {
   final IconData icon;
   final void Function()? onTap;
 
-  const PostIconButton({
+  const CustomIconButton({
     super.key,
     required this.icon,
     this.onTap,
@@ -16,12 +17,12 @@ class PostIconButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 24,
-        height: 24,
+        width: Sizes.size24,
+        height: Sizes.size24,
         alignment: Alignment.center,
         child: FaIcon(
           icon,
-          size: 18,
+          size: Sizes.size18,
         ),
       ),
     );

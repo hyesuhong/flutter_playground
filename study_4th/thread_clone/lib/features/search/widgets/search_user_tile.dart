@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:thread_clone/common/user_profile/user_profile.dart';
+import 'package:thread_clone/constants/gaps.dart';
+import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/utils/format.dart';
-import 'package:thread_clone/widgets/user_profile.dart';
 
 class SearchUserTile extends StatelessWidget {
   final String username;
@@ -31,9 +33,7 @@ class SearchUserTile extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          const SizedBox(
-            height: 4,
-          ),
+          Gaps.v4,
           Text("${formatCompactNumber(followers)} followers"),
         ],
       ),
@@ -42,13 +42,13 @@ class SearchUserTile extends StatelessWidget {
           border: Border.all(
             color: Colors.grey.shade300,
           ),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(Sizes.size8),
         ),
         child: GestureDetector(
           child: Container(
             padding: const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 8,
+              horizontal: Sizes.size24,
+              vertical: Sizes.size8,
             ),
             child: const Text("Follow"),
           ),

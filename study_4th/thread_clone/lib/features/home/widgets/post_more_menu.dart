@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:thread_clone/widgets/post_report_menu.dart';
+import 'package:thread_clone/constants/gaps.dart';
+import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/home/widgets/post_report_menu.dart';
 
 class PostMoreMenu extends StatelessWidget {
   const PostMoreMenu({super.key});
@@ -21,9 +23,9 @@ class PostMoreMenu extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.only(
-        left: 20,
-        right: 20,
-        bottom: 40,
+        left: Sizes.size20,
+        right: Sizes.size20,
+        bottom: Sizes.size40,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -33,7 +35,7 @@ class PostMoreMenu extends StatelessWidget {
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
               color: Colors.grey.shade100,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(Sizes.size20),
             ),
             child: Column(
               children: [
@@ -47,13 +49,13 @@ class PostMoreMenu extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 24),
+          Gaps.v24,
           Container(
             width: double.infinity,
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
               color: Colors.grey.shade100,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(Sizes.size20),
             ),
             child: Column(
               children: [
@@ -85,8 +87,8 @@ Widget _buildMoreItem({
   return GestureDetector(
     onTap: onTap,
     child: Container(
-      height: 56,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      height: Sizes.size56,
+      padding: const EdgeInsets.symmetric(horizontal: Sizes.size16),
       alignment: Alignment.centerLeft,
       child: Text(
         label,

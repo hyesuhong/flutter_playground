@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:thread_clone/widgets/post_icon_button.dart';
-import 'package:thread_clone/widgets/user_profile.dart';
+import 'package:thread_clone/common/button/custom_icon_button.dart';
+import 'package:thread_clone/common/user_profile/user_profile.dart';
+import 'package:thread_clone/constants/gaps.dart';
+import 'package:thread_clone/constants/sizes.dart';
 
 class WritingScreen extends StatefulWidget {
   const WritingScreen({super.key});
@@ -29,7 +31,7 @@ class _WritingScreenState extends State<WritingScreen> {
         title: const Text(
           "New Post",
           style: TextStyle(
-            fontSize: 20,
+            fontSize: Sizes.size20,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -45,17 +47,17 @@ class _WritingScreenState extends State<WritingScreen> {
             child: const Text(
               "Cancel",
               style: TextStyle(
-                fontSize: 16,
+                fontSize: Sizes.size16,
               ),
             ),
           ),
         ),
-        leadingWidth: 80,
+        leadingWidth: Sizes.size80,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          vertical: 24,
-          horizontal: 16,
+          vertical: Sizes.size24,
+          horizontal: Sizes.size16,
         ),
         child: Column(
           children: [
@@ -65,12 +67,10 @@ class _WritingScreenState extends State<WritingScreen> {
                 const Column(
                   children: [
                     UserProfile(imageUrl: "https://i.pravatar.cc/300"),
-                    SizedBox(
-                      height: 8,
-                    ),
+                    Gaps.v8
                   ],
                 ),
-                const SizedBox(width: 16),
+                Gaps.h16,
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,7 +78,7 @@ class _WritingScreenState extends State<WritingScreen> {
                       const Text(
                         "username",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: Sizes.size16,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -93,8 +93,8 @@ class _WritingScreenState extends State<WritingScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 8),
-                      const PostIconButton(
+                      Gaps.v8,
+                      const CustomIconButton(
                         icon: FontAwesomeIcons.paperclip,
                       ),
                     ],
@@ -108,7 +108,7 @@ class _WritingScreenState extends State<WritingScreen> {
       bottomNavigationBar: BottomAppBar(
         child: Container(
           padding: const EdgeInsets.symmetric(
-            horizontal: 16,
+            horizontal: Sizes.size16,
           ),
           alignment: Alignment.centerRight,
           child: AnimatedOpacity(
@@ -117,14 +117,14 @@ class _WritingScreenState extends State<WritingScreen> {
             child: GestureDetector(
               child: Container(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 8,
+                  horizontal: Sizes.size20,
+                  vertical: Sizes.size8,
                 ),
                 child: Text(
                   "Post",
                   style: TextStyle(
                     color: Colors.blue.shade400,
-                    fontSize: 16,
+                    fontSize: Sizes.size16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

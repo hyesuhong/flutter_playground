@@ -1,5 +1,5 @@
 import 'package:faker/faker.dart';
-import 'package:thread_clone/models/user_model.dart';
+import 'package:thread_clone/common/user_profile/models/user_model.dart';
 
 enum ActivityKind {
   follows,

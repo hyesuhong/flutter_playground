@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:thread_clone/models/activity_model.dart';
-import 'package:thread_clone/widgets/activity_tab.dart';
-import 'package:thread_clone/widgets/activity_tile.dart';
+import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/activity/models/activity_model.dart';
+import 'package:thread_clone/features/activity/widgets/activity_tab.dart';
+import 'package:thread_clone/features/activity/widgets/activity_tile.dart';
 
 const _tabs = [
   "All",
@@ -52,7 +53,7 @@ class _ActivityScreenState extends State<ActivityScreen>
         title: const Text(
           "Activity",
           style: TextStyle(
-            fontSize: 32,
+            fontSize: Sizes.size32,
             fontWeight: FontWeight.bold,
             letterSpacing: -0.7,
           ),
@@ -61,12 +62,12 @@ class _ActivityScreenState extends State<ActivityScreen>
         bottom: TabBar(
           controller: _controller,
           isScrollable: true,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: Sizes.size16),
           dividerColor: Colors.transparent,
           indicatorColor: Colors.transparent,
           overlayColor: WidgetStateColor.transparent,
           tabAlignment: TabAlignment.start,
-          labelPadding: const EdgeInsets.symmetric(horizontal: 4),
+          labelPadding: const EdgeInsets.symmetric(horizontal: Sizes.size4),
           tabs: _tabs.map((tab) {
             int index = _tabs.indexOf(tab);
             return ActivityTab(
@@ -78,9 +79,9 @@ class _ActivityScreenState extends State<ActivityScreen>
       ),
       body: Padding(
         padding: const EdgeInsets.only(
-          left: 16,
-          right: 16,
-          bottom: 16,
+          left: Sizes.size16,
+          right: Sizes.size16,
+          bottom: Sizes.size16,
         ),
         child: ListView.separated(
             itemBuilder: (context, index) {

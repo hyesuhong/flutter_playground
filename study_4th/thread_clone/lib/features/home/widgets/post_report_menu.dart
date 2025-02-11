@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:thread_clone/constants/gaps.dart';
+import 'package:thread_clone/constants/sizes.dart';
 
 const _reportReasons = [
   "I just don’t like it",
@@ -21,7 +23,7 @@ class PostReportMenu extends StatelessWidget {
       appBar: AppBar(
         title: Container(
           width: double.infinity,
-          height: 48,
+          height: Sizes.size48,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             border: Border(
@@ -33,24 +35,24 @@ class PostReportMenu extends StatelessWidget {
           child: const Text(
             "Report",
             style: TextStyle(
-              fontSize: 20,
+              fontSize: Sizes.size20,
               fontWeight: FontWeight.bold,
             ),
           ),
         ),
         automaticallyImplyLeading: false,
-        toolbarHeight: 48,
+        toolbarHeight: Sizes.size48,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
-          vertical: 8.0,
-          horizontal: 12,
+          vertical: Sizes.size8,
+          horizontal: Sizes.size12,
         ),
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 16,
+                horizontal: Sizes.size16,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,11 +60,11 @@ class PostReportMenu extends StatelessWidget {
                   const Text(
                     "Why are you reporting this post?",
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: Sizes.size18,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(height: 6),
+                  Gaps.v6,
                   Text(
                     "Your report is anonymous. If someone is in immediate danger, call the local emergency services - don’t wait.",
                     style: TextStyle(
@@ -72,7 +74,7 @@ class PostReportMenu extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+            Gaps.v20,
             const Divider(height: 1),
             ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
@@ -82,7 +84,7 @@ class PostReportMenu extends StatelessWidget {
                   title: Text(_reportReasons[index]),
                   trailing: const FaIcon(
                     FontAwesomeIcons.chevronRight,
-                    size: 16,
+                    size: Sizes.size16,
                   ),
                 );
               },
