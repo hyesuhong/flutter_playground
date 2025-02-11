@@ -40,82 +40,89 @@ class PostContent extends StatelessWidget {
       padding: const EdgeInsets.all(Sizes.size8),
       child: Column(
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                children: [
-                  UserProfile(imageUrl: profileUrl),
-                  Gaps.v8,
-                ],
-              ),
-              Gaps.h16,
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
                   children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(username),
-                        ),
-                        Text(formatDate(createdAt)),
-                        Gaps.h8,
-                        CustomIconButton(
-                          icon: FontAwesomeIcons.ellipsis,
-                          onTap: () => _onMoreTap(context),
-                        )
-                      ],
-                    ),
-                    Gaps.v2,
-                    Text(contentText),
-                    Gaps.h8,
-                    if (contentImageUrls.isNotEmpty)
-                      SizedBox(
-                        height: Sizes.size64 * 4,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: contentImageUrls.length,
-                          itemBuilder: (context, imgIndex) {
-                            return Padding(
-                              padding: const EdgeInsets.only(
-                                right: Sizes.size12,
-                              ),
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.circular(Sizes.size8),
-                                child: Image.network(
-                                  contentImageUrls[imgIndex],
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+                    UserProfile(imageUrl: profileUrl),
+                    Gaps.v10,
+                    const Expanded(
+                      child: VerticalDivider(
+                        thickness: 1.4,
                       ),
-                    Gaps.v16,
-                    const Row(
-                      children: [
-                        CustomIconButton(
-                          icon: FontAwesomeIcons.heart,
-                        ),
-                        Gaps.h12,
-                        CustomIconButton(
-                          icon: FontAwesomeIcons.comment,
-                        ),
-                        Gaps.h12,
-                        CustomIconButton(
-                          icon: FontAwesomeIcons.retweet,
-                        ),
-                        Gaps.h12,
-                        CustomIconButton(
-                          icon: FontAwesomeIcons.paperPlane,
-                        ),
-                      ],
-                    )
+                    ),
                   ],
                 ),
-              ),
-            ],
+                Gaps.h16,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(username),
+                          ),
+                          Text(formatDate(createdAt)),
+                          Gaps.h8,
+                          CustomIconButton(
+                            icon: FontAwesomeIcons.ellipsis,
+                            onTap: () => _onMoreTap(context),
+                          )
+                        ],
+                      ),
+                      Gaps.v2,
+                      Text(contentText),
+                      Gaps.h8,
+                      if (contentImageUrls.isNotEmpty)
+                        SizedBox(
+                          height: Sizes.size64 * 4,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: contentImageUrls.length,
+                            itemBuilder: (context, imgIndex) {
+                              return Padding(
+                                padding: const EdgeInsets.only(
+                                  right: Sizes.size12,
+                                ),
+                                child: ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.circular(Sizes.size8),
+                                  child: Image.network(
+                                    contentImageUrls[imgIndex],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      Gaps.v16,
+                      const Row(
+                        children: [
+                          CustomIconButton(
+                            icon: FontAwesomeIcons.heart,
+                          ),
+                          Gaps.h12,
+                          CustomIconButton(
+                            icon: FontAwesomeIcons.comment,
+                          ),
+                          Gaps.h12,
+                          CustomIconButton(
+                            icon: FontAwesomeIcons.retweet,
+                          ),
+                          Gaps.h12,
+                          CustomIconButton(
+                            icon: FontAwesomeIcons.paperPlane,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
           Gaps.v4,
           Row(
