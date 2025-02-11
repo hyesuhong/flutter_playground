@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:thread_clone/screens/activity_screen.dart';
 import 'package:thread_clone/screens/home_screen.dart';
 import 'package:thread_clone/screens/placeholder_screen.dart';
 import 'package:thread_clone/screens/search_screen.dart';
@@ -64,16 +65,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
             child: const SearchScreen(),
           ),
           Offstage(
-            offstage: _selectedIndex != 2,
-            child: const PlaceholderScreen(
-              placeholder: "Posting",
-            ),
-          ),
-          Offstage(
             offstage: _selectedIndex != 3,
-            child: const PlaceholderScreen(
-              placeholder: "Likes",
-            ),
+            child: const ActivityScreen(),
           ),
           Offstage(
             offstage: _selectedIndex != 4,

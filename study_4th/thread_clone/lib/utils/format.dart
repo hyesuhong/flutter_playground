@@ -28,7 +28,5 @@ String formatCompactNumber(int num) {
   String convertedNumToStr =
       (num / compactorValue).toStringAsFixed(1) + compactorSuffix;
 
-  print(num);
-  print(targetCompactor.toString());
   return convertedNumToStr;
 }
