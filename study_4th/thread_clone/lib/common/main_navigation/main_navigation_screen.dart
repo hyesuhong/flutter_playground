@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:thread_clone/common/main_navigation/widgets/nav_tab.dart';
-import 'package:thread_clone/common/main_navigation/widgets/placeholder_screen.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/activity/activity_screen.dart';
 import 'package:thread_clone/features/home/home_screen.dart';
+import 'package:thread_clone/features/profile/profile_screen.dart';
 import 'package:thread_clone/features/search/search_screen.dart';
 import 'package:thread_clone/features/writing/writing_screen.dart';
 
@@ -71,9 +71,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ),
           Offstage(
             offstage: _selectedIndex != 4,
-            child: const PlaceholderScreen(
-              placeholder: "Profile",
-            ),
+            child: const ProfileScreen(),
           ),
         ],
       ),
