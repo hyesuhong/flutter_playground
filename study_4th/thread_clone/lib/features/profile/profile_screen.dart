@@ -9,6 +9,7 @@ import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/home/models/post_model.dart';
 import 'package:thread_clone/features/home/widgets/post_content.dart';
 import 'package:thread_clone/features/profile/widgets/persistent_tab_bar.dart';
+import 'package:thread_clone/features/settings/settings_screen.dart';
 
 var _posts = List.generate(20, (index) => PostModel.generate());
 var _replies = List.generate(20, (index) => PostModel.generate());
@@ -23,6 +24,14 @@ var _user = UserModel(
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
+
+  void _onMenuTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => const SettingsScreen(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +48,13 @@ class ProfileScreen extends StatelessWidget {
             alignment: Alignment.center,
             child: const FaIcon(FontAwesomeIcons.instagram),
           ),
-          Container(
-            width: Sizes.size48,
-            alignment: Alignment.center,
-            child: const FaIcon(FontAwesomeIcons.bars),
+          GestureDetector(
+            onTap: () => _onMenuTap(context),
+            child: Container(
+              width: Sizes.size48,
+              alignment: Alignment.center,
+              child: const FaIcon(FontAwesomeIcons.bars),
+            ),
           ),
         ],
       ),
