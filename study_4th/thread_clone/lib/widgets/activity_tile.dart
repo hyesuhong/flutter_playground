@@ -108,7 +108,7 @@ class ActivityTile extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Text("Follow back"),
+              child: const Text("Follow back"),
             )
           : null,
     );

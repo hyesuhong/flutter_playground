@@ -19,7 +19,7 @@ class SearchUserTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.all(0),
+      contentPadding: const EdgeInsets.all(0),
       titleAlignment: ListTileTitleAlignment.titleHeight,
       leading: UserProfile(imageUrl: profileUrl),
       title: Text(username),
@@ -46,13 +46,11 @@ class SearchUserTile extends StatelessWidget {
         ),
         child: GestureDetector(
           child: Container(
-            // width: double.infinity,
-            // height: double.infinity,
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: 24,
               vertical: 8,
             ),
-            child: Text("Follow"),
+            child: const Text("Follow"),
           ),
         ),
       ),
