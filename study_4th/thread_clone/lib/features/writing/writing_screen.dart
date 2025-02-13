@@ -4,6 +4,7 @@ import 'package:thread_clone/common/button/custom_icon_button.dart';
 import 'package:thread_clone/common/user_profile/user_profile.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/camera/camera_screen.dart';
 
 class WritingScreen extends StatefulWidget {
   const WritingScreen({super.key});
@@ -22,6 +23,14 @@ class _WritingScreenState extends State<WritingScreen> {
   void _onInputChange(String value) {
     _isFilled = value.isNotEmpty;
     setState(() {});
+  }
+
+  void _onFileTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const CameraScreen(),
+      ),
+    );
   }
 
   @override
@@ -94,8 +103,9 @@ class _WritingScreenState extends State<WritingScreen> {
                         ),
                       ),
                       Gaps.v8,
-                      const CustomIconButton(
+                      CustomIconButton(
                         icon: FontAwesomeIcons.paperclip,
+                        onTap: () => _onFileTap(context),
                       ),
                     ],
                   ),
