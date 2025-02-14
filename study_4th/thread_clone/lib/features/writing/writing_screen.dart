@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:thread_clone/common/button/custom_icon_button.dart';
 import 'package:thread_clone/common/user_profile/user_profile.dart';
 import 'package:thread_clone/constants/gaps.dart';
@@ -15,6 +18,7 @@ class WritingScreen extends StatefulWidget {
 
 class _WritingScreenState extends State<WritingScreen> {
   bool _isFilled = false;
+  List<XFile>? _pictures;
 
   void _onCancelTap(BuildContext context) {
     Navigator.of(context).pop();
@@ -25,12 +29,19 @@ class _WritingScreenState extends State<WritingScreen> {
     setState(() {});
   }
 
-  void _onFileTap(BuildContext context) {
-    Navigator.of(context).push(
+  Future<void> _onFileTap(BuildContext context) async {
+    List<XFile>? pictures = await Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const CameraScreen(),
       ),
     );
+
+    if (pictures == null || pictures.isEmpty) {
+      return;
+    }
+
+    _pictures = pictures;
+    setState(() {});
   }
 
   @override
@@ -111,7 +122,46 @@ class _WritingScreenState extends State<WritingScreen> {
                   ),
                 ),
               ],
-            )
+            ),
+            if (_pictures != null)
+              Container(
+                height: Sizes.size64 * 4,
+                padding: EdgeInsets.only(left: Sizes.size64),
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    var file = _pictures![index];
+                    return Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(Sizes.size16),
+                          child: Image.file(
+                            File(file.path),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Positioned(
+                          top: Sizes.size4,
+                          right: Sizes.size4,
+                          child: IconButton(
+                            onPressed: () {
+                              _pictures!.removeAt(index);
+                              setState(() {});
+                            },
+                            icon: FaIcon(
+                              FontAwesomeIcons.solidCircleXmark,
+                              color: Colors.grey.shade400,
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                  separatorBuilder: (context, index) => Gaps.h8,
+                  itemCount: _pictures!.length,
+                ),
+              ),
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
@@ -24,7 +25,7 @@ class _CameraScreenState extends State<CameraScreen>
     duration: const Duration(milliseconds: 200),
   );
   late final Animation<double> _buttonAnimation =
-      Tween(begin: 1.0, end: 1.1).animate(_animationController);
+      Tween(begin: 1.0, end: 0.9).animate(_animationController);
 
   @override
   void initState() {
@@ -108,6 +109,26 @@ class _CameraScreenState extends State<CameraScreen>
     await _animationController.reverse();
 
     final picture = await _cameraController!.takePicture();
+
+    if (!mounted) {
+      return;
+    }
+
+    Navigator.of(context).pop([picture]);
+  }
+
+  Future<void> _onPickPicturePressed() async {
+    final pictures = await ImagePicker().pickMultiImage();
+
+    if (pictures.isEmpty) {
+      return;
+    }
+
+    if (!mounted) {
+      return;
+    }
+
+    Navigator.of(context).pop(pictures);
   }
 
   bool _getCameraIsAvailable() =>
@@ -147,9 +168,7 @@ class _CameraScreenState extends State<CameraScreen>
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           IconButton(
-                            onPressed: () {
-                              print("gallery");
-                            },
+                            onPressed: _onPickPicturePressed,
                             icon: FaIcon(
                               FontAwesomeIcons.photoFilm,
                               color: Colors.grey.shade500,
