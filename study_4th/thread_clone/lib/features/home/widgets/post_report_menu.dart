@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/utils/ui.dart';
 
 const _reportReasons = [
   "I just don’t like it",
@@ -20,18 +21,20 @@ class PostReportMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        shape: Border(
+          bottom: BorderSide(
+            color: isDarkMode(context)
+                ? Colors.grey.shade700
+                : Colors.grey.shade300,
+          ),
+        ),
         title: Container(
           width: double.infinity,
           height: Sizes.size48,
           alignment: Alignment.center,
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: Colors.grey.shade300,
-              ),
-            ),
-          ),
           child: const Text(
             "Report",
             style: TextStyle(
@@ -45,7 +48,7 @@ class PostReportMenu extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
-          vertical: Sizes.size8,
+          vertical: Sizes.size16,
           horizontal: Sizes.size12,
         ),
         child: Column(

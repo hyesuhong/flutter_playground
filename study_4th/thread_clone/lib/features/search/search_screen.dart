@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:thread_clone/common/user_profile/models/user_model.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/search/widgets/search_user_tile.dart';
+import 'package:thread_clone/utils/ui.dart';
 
 List<UserModel> _users = List.generate(
   20,
@@ -54,8 +55,13 @@ class SearchScreen extends StatelessWidget {
                   color: Colors.grey.shade500,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
+                  color: isDarkMode(context)
+                      ? Colors.grey.shade900
+                      : Colors.grey.shade100,
                   borderRadius: BorderRadius.circular(Sizes.size8),
+                ),
+                style: TextStyle(
+                  color: isDarkMode(context) ? Colors.white : Colors.black,
                 ),
               ),
             ),

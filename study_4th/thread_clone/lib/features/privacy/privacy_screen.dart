@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/privacy/widgets/text_list_tile.dart';
+import 'package:thread_clone/utils/ui.dart';
 
 class PrivacyScreen extends StatefulWidget {
   const PrivacyScreen({super.key});
@@ -74,7 +75,14 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
                   },
                   title: const Text("Private profile"),
                   secondary: const FaIcon(FontAwesomeIcons.lock),
-                  activeTrackColor: Colors.black87,
+                  inactiveThumbColor:
+                      isDarkMode(context) ? Colors.black : Colors.white,
+                  inactiveTrackColor: isDarkMode(context)
+                      ? Colors.grey.shade800
+                      : Colors.grey.shade500,
+                  activeTrackColor: isDarkMode(context)
+                      ? Colors.grey.shade500
+                      : Colors.black87,
                 ),
                 const TextListTile(
                   title: "Mentions",

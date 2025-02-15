@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:thread_clone/constants/gaps.dart';
+import 'package:thread_clone/utils/ui.dart';
 
 class NavTab extends StatelessWidget {
   final IconData icon;
@@ -27,7 +28,7 @@ class NavTab extends StatelessWidget {
             children: [
               FaIcon(
                 icon,
-                color: Colors.black,
+                color: isDarkMode(context) ? Colors.white : Colors.black,
               ),
               Gaps.v4,
             ],

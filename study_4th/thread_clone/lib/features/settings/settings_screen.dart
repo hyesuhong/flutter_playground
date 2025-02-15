@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/privacy/privacy_screen.dart';
+import 'package:thread_clone/utils/ui.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -39,10 +40,10 @@ class SettingsScreen extends StatelessWidget {
             ),
             CupertinoDialogAction(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text(
+              child: Text(
                 "Cancel",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: isDarkMode(context) ? Colors.white : Colors.black,
                 ),
               ),
             ),

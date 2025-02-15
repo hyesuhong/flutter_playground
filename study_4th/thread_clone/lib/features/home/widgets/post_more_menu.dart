@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/home/widgets/post_report_menu.dart';
+import 'package:thread_clone/utils/ui.dart';
 
 class PostMoreMenu extends StatelessWidget {
   const PostMoreMenu({super.key});
@@ -34,7 +35,8 @@ class PostMoreMenu extends StatelessWidget {
             width: double.infinity,
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
-              color: Colors.grey.shade100,
+              color:
+                  isDarkMode(context) ? Colors.grey[850] : Colors.grey.shade100,
               borderRadius: BorderRadius.circular(Sizes.size20),
             ),
             child: Column(
@@ -43,7 +45,9 @@ class PostMoreMenu extends StatelessWidget {
                 Divider(
                   height: 0,
                   thickness: 1,
-                  color: Colors.grey.shade300,
+                  color: isDarkMode(context)
+                      ? Colors.grey.shade700
+                      : Colors.grey.shade300,
                 ),
                 _buildMoreItem(label: "Mute"),
               ],
@@ -54,7 +58,8 @@ class PostMoreMenu extends StatelessWidget {
             width: double.infinity,
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
-              color: Colors.grey.shade100,
+              color:
+                  isDarkMode(context) ? Colors.grey[850] : Colors.grey.shade100,
               borderRadius: BorderRadius.circular(Sizes.size20),
             ),
             child: Column(
@@ -63,7 +68,9 @@ class PostMoreMenu extends StatelessWidget {
                 Divider(
                   height: 0,
                   thickness: 1,
-                  color: Colors.grey.shade300,
+                  color: isDarkMode(context)
+                      ? Colors.grey.shade700
+                      : Colors.grey.shade300,
                 ),
                 _buildMoreItem(
                   label: "Report",
@@ -94,7 +101,7 @@ Widget _buildMoreItem({
         label,
         style: TextStyle(
           fontWeight: FontWeight.w700,
-          color: isDangerous ? Colors.red : Colors.black87,
+          color: isDangerous ? Colors.red : null,
         ),
       ),
     ),

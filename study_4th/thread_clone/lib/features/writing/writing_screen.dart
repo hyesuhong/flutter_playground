@@ -8,6 +8,7 @@ import 'package:thread_clone/common/user_profile/user_profile.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/camera/camera_screen.dart';
+import 'package:thread_clone/utils/ui.dart';
 
 class WritingScreen extends StatefulWidget {
   const WritingScreen({super.key});
@@ -47,6 +48,7 @@ class _WritingScreenState extends State<WritingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: const Text(
           "New Post",
@@ -55,9 +57,12 @@ class _WritingScreenState extends State<WritingScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        backgroundColor: Colors.transparent,
         shape: Border(
           bottom: BorderSide(
-            color: Colors.grey.shade300,
+            color: isDarkMode(context)
+                ? Colors.grey.shade700
+                : Colors.grey.shade300,
           ),
         ),
         leading: GestureDetector(
@@ -126,7 +131,7 @@ class _WritingScreenState extends State<WritingScreen> {
             if (_pictures != null)
               Container(
                 height: Sizes.size64 * 4,
-                padding: EdgeInsets.only(left: Sizes.size64),
+                padding: const EdgeInsets.only(left: Sizes.size64),
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
@@ -166,6 +171,7 @@ class _WritingScreenState extends State<WritingScreen> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
+        color: Colors.transparent,
         child: Container(
           padding: const EdgeInsets.symmetric(
             horizontal: Sizes.size16,
