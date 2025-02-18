@@ -16,19 +16,27 @@ final router = GoRouter(
       routes: [
         GoRoute(
           path: '/',
-          builder: (context, state) => const HomeScreen(),
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: HomeScreen(),
+          ),
         ),
         GoRoute(
           path: '/search',
-          builder: (context, state) => const SearchScreen(),
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: SearchScreen(),
+          ),
         ),
         GoRoute(
           path: '/activity',
-          builder: (context, state) => const ActivityScreen(),
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: ActivityScreen(),
+          ),
         ),
         GoRoute(
           path: '/profile',
-          builder: (context, state) => const ProfileScreen(),
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: ProfileScreen(),
+          ),
         ),
         GoRoute(
           path: '/settings',
