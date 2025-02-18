@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thread_clone/common/main_navigation/main_navigation_screen.dart';
+import 'package:thread_clone/router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Thread clone',
       themeMode: ThemeMode.system,
       theme: ThemeData(
@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const MainNavigationScreen(),
+      routerConfig: router,
     );
   }
 }

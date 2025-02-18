@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:thread_clone/common/user_profile/models/user_model.dart';
 import 'package:thread_clone/common/user_profile/user_profile.dart';
 import 'package:thread_clone/constants/gaps.dart';
@@ -9,7 +10,6 @@ import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/home/models/post_model.dart';
 import 'package:thread_clone/features/home/widgets/post_content.dart';
 import 'package:thread_clone/features/profile/widgets/persistent_tab_bar.dart';
-import 'package:thread_clone/features/settings/settings_screen.dart';
 
 var _posts = List.generate(20, (index) => PostModel.generate());
 var _replies = List.generate(20, (index) => PostModel.generate());
@@ -26,11 +26,7 @@ class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   void _onMenuTap(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => const SettingsScreen(),
-      ),
-    );
+    context.push('/settings');
   }
 
   @override
