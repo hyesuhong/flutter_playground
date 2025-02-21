@@ -2,12 +2,34 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/settings/models/settings_config_model.dart';
+import 'package:thread_clone/features/settings/view_models/settings_config_vm.dart';
 import 'package:thread_clone/utils/ui.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  late bool _isDarkMode;
+
+  @override
+  void initState() {
+    super.initState();
+
+    var vm = context.read<SettingsConfigViewModel>();
+    vm.addListener(_onAppearanceConfigChanged);
+    print(vm.appearance);
+    setState(() {
+      _isDarkMode = vm.appearance == Appearance.dark;
+    });
+  }
 
   void _onBackTap(BuildContext context) {
     context.pop();
@@ -47,6 +69,14 @@ class SettingsScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _onAppearanceConfigChanged() {
+    if (!mounted) return;
+    final appearance = context.read<SettingsConfigViewModel>().appearance;
+
+    _isDarkMode = appearance == Appearance.dark;
+    setState(() {});
   }
 
   @override
@@ -92,6 +122,23 @@ class SettingsScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            SwitchListTile.adaptive(
+              secondary: const FaIcon(FontAwesomeIcons.circleHalfStroke),
+              title: const Text("Dark Mode"),
+              value: _isDarkMode,
+              onChanged: (value) {
+                context
+                    .read<SettingsConfigViewModel>()
+                    .setAppearance(value ? Appearance.dark : Appearance.light);
+              },
+              inactiveThumbColor:
+                  isDarkMode(context) ? Colors.black : Colors.white,
+              inactiveTrackColor: isDarkMode(context)
+                  ? Colors.grey.shade800
+                  : Colors.grey.shade500,
+              activeTrackColor:
+                  isDarkMode(context) ? Colors.grey.shade500 : Colors.black87,
+            ),
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -136,12 +183,12 @@ class SettingsScreen extends StatelessWidget {
 class SettingItem {
   final IconData icon;
   final String label;
-  final void Function()? onTap;
+  final bool isSwitch;
 
   SettingItem({
     required this.icon,
     required this.label,
-    this.onTap,
+    this.isSwitch = false,
   });
 }
 

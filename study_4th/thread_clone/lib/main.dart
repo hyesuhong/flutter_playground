@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:thread_clone/features/settings/repos/settings_config_repo.dart';
+import 'package:thread_clone/features/settings/view_models/settings_config_vm.dart';
 import 'package:thread_clone/router.dart';
+import 'package:thread_clone/utils/ui.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   GoRouter.optionURLReflectsImperativeAPIs = true;
-  runApp(const MyApp());
+
+  final preferences = await SharedPreferences.getInstance();
+  final repository = SettingsConfigRepository(preferences);
+
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (context) => SettingsConfigViewModel(repository),
+      )
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Thread clone',
-      themeMode: ThemeMode.system,
+      themeMode: isDarkMode(context) ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         brightness: Brightness.light,

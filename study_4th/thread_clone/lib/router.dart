@@ -5,7 +5,7 @@ import 'package:thread_clone/features/home/home_screen.dart';
 import 'package:thread_clone/features/privacy/privacy_screen.dart';
 import 'package:thread_clone/features/profile/profile_screen.dart';
 import 'package:thread_clone/features/search/search_screen.dart';
-import 'package:thread_clone/features/settings/settings_screen.dart';
+import 'package:thread_clone/features/settings/views/settings_screen.dart';
 
 final router = GoRouter(
   routes: [
