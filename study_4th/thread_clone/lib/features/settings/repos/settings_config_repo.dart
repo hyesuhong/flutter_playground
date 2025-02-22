@@ -14,7 +14,7 @@ class SettingsConfigRepository {
 
   Appearance? getAppearance() {
     String? appearance = _preferences.getString(_appearance);
-    print(appearance);
+
     if (appearance == null) {
       return null;
     }
@@ -22,7 +22,7 @@ class SettingsConfigRepository {
     var appearances = Appearance.values;
     var appearanceIndex =
         appearances.indexWhere((value) => value.name == appearance);
-    print(appearanceIndex);
+
     return appearanceIndex < 0 ? null : appearances[appearanceIndex];
   }
 }

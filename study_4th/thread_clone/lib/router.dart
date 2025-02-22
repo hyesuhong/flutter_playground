@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:thread_clone/common/main_navigation/main_navigation_screen.dart';
 import 'package:thread_clone/features/activity/activity_screen.dart';
+import 'package:thread_clone/features/authentication/views/create_account_screen.dart';
+import 'package:thread_clone/features/authentication/views/sign_in_screen.dart';
 import 'package:thread_clone/features/home/home_screen.dart';
 import 'package:thread_clone/features/privacy/privacy_screen.dart';
 import 'package:thread_clone/features/profile/profile_screen.dart';
@@ -50,5 +52,18 @@ final router = GoRouter(
         ),
       ],
     ),
+    GoRoute(
+      path: '/sign-in',
+      pageBuilder: (context, state) => const NoTransitionPage(
+        child: SignInScreen(),
+      ),
+    ),
+    GoRoute(
+      path: '/create-account',
+      pageBuilder: (context, state) => const NoTransitionPage(
+        child: CreateAccountScreen(),
+      ),
+    ),
   ],
+  initialLocation: '/sign-in',
 );
