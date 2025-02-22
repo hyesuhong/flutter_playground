@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:thread_clone/common/user_profile/models/user_model.dart';
 import 'package:thread_clone/constants/sizes.dart';
@@ -11,11 +12,11 @@ List<UserModel> _users = List.generate(
   (index) => UserModel.generate(),
 );
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends ConsumerWidget {
   const SearchScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -55,13 +56,13 @@ class SearchScreen extends StatelessWidget {
                   color: Colors.grey.shade500,
                 ),
                 decoration: BoxDecoration(
-                  color: isDarkMode(context)
+                  color: isDarkMode(ref)
                       ? Colors.grey.shade900
                       : Colors.grey.shade100,
                   borderRadius: BorderRadius.circular(Sizes.size8),
                 ),
                 style: TextStyle(
-                  color: isDarkMode(context) ? Colors.white : Colors.black,
+                  color: isDarkMode(ref) ? Colors.white : Colors.black,
                 ),
               ),
             ),

@@ -1,35 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/settings/models/settings_config_model.dart';
 import 'package:thread_clone/features/settings/view_models/settings_config_vm.dart';
 import 'package:thread_clone/utils/ui.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
-
-  @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
-  late bool _isDarkMode;
-
-  @override
-  void initState() {
-    super.initState();
-
-    var vm = context.read<SettingsConfigViewModel>();
-    vm.addListener(_onAppearanceConfigChanged);
-    print(vm.appearance);
-    setState(() {
-      _isDarkMode = vm.appearance == Appearance.dark;
-    });
-  }
 
   void _onBackTap(BuildContext context) {
     context.pop();
@@ -39,7 +20,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     context.push('/settings/privacy');
   }
 
-  void _onLogoutTap(BuildContext context) {
+  void _onLogoutTap(BuildContext context, WidgetRef ref) {
     showCupertinoDialog(
       context: context,
       builder: (BuildContext context) {
@@ -61,7 +42,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Text(
                 "Cancel",
                 style: TextStyle(
-                  color: isDarkMode(context) ? Colors.white : Colors.black,
+                  color: isDarkMode(ref) ? Colors.white : Colors.black,
                 ),
               ),
             ),
@@ -71,16 +52,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  void _onAppearanceConfigChanged() {
-    if (!mounted) return;
-    final appearance = context.read<SettingsConfigViewModel>().appearance;
-
-    _isDarkMode = appearance == Appearance.dark;
-    setState(() {});
-  }
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final Appearance? appearance = ref.watch(settingsConfigProvider).appearance;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -125,19 +100,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SwitchListTile.adaptive(
               secondary: const FaIcon(FontAwesomeIcons.circleHalfStroke),
               title: const Text("Dark Mode"),
-              value: _isDarkMode,
+              value: appearance == Appearance.dark,
               onChanged: (value) {
-                context
-                    .read<SettingsConfigViewModel>()
+                ref
+                    .read(settingsConfigProvider.notifier)
                     .setAppearance(value ? Appearance.dark : Appearance.light);
               },
-              inactiveThumbColor:
-                  isDarkMode(context) ? Colors.black : Colors.white,
-              inactiveTrackColor: isDarkMode(context)
-                  ? Colors.grey.shade800
-                  : Colors.grey.shade500,
+              inactiveThumbColor: isDarkMode(ref) ? Colors.black : Colors.white,
+              inactiveTrackColor:
+                  isDarkMode(ref) ? Colors.grey.shade800 : Colors.grey.shade500,
               activeTrackColor:
-                  isDarkMode(context) ? Colors.grey.shade500 : Colors.black87,
+                  isDarkMode(ref) ? Colors.grey.shade500 : Colors.black87,
             ),
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
@@ -163,7 +136,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 vertical: Sizes.size4,
               ),
               child: GestureDetector(
-                onTap: () => _onLogoutTap(context),
+                onTap: () => _onLogoutTap(context, ref),
                 child: Text(
                   "Log out",
                   style: TextStyle(
@@ -183,12 +156,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
 class SettingItem {
   final IconData icon;
   final String label;
-  final bool isSwitch;
 
   SettingItem({
     required this.icon,
     required this.label,
-    this.isSwitch = false,
   });
 }
 

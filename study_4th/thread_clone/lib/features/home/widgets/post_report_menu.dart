@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
@@ -15,20 +16,19 @@ const _reportReasons = [
   "False information",
 ];
 
-class PostReportMenu extends StatelessWidget {
+class PostReportMenu extends ConsumerWidget {
   const PostReportMenu({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         shape: Border(
           bottom: BorderSide(
-            color: isDarkMode(context)
-                ? Colors.grey.shade700
-                : Colors.grey.shade300,
+            color:
+                isDarkMode(ref) ? Colors.grey.shade700 : Colors.grey.shade300,
           ),
         ),
         title: Container(

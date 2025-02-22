@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thread_clone/features/settings/repos/settings_config_repo.dart';
 import 'package:thread_clone/features/settings/view_models/settings_config_vm.dart';
@@ -15,24 +15,26 @@ Future<void> main() async {
   final preferences = await SharedPreferences.getInstance();
   final repository = SettingsConfigRepository(preferences);
 
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(
-        create: (context) => SettingsConfigViewModel(repository),
-      )
-    ],
-    child: const MyApp(),
-  ));
+  runApp(
+    ProviderScope(
+      overrides: [
+        settingsConfigProvider.overrideWith(
+          () => SettingsConfigViewModel(repository),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       title: 'Thread clone',
-      themeMode: isDarkMode(context) ? ThemeMode.dark : ThemeMode.light,
+      themeMode: isDarkMode(ref) ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         brightness: Brightness.light,

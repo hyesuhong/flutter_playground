@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/home/widgets/post_report_menu.dart';
 import 'package:thread_clone/utils/ui.dart';
 
-class PostMoreMenu extends StatelessWidget {
+class PostMoreMenu extends ConsumerWidget {
   const PostMoreMenu({super.key});
 
   void _onReportTap(BuildContext context) {
@@ -20,7 +21,7 @@ class PostMoreMenu extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.only(
@@ -35,8 +36,7 @@ class PostMoreMenu extends StatelessWidget {
             width: double.infinity,
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
-              color:
-                  isDarkMode(context) ? Colors.grey[850] : Colors.grey.shade100,
+              color: isDarkMode(ref) ? Colors.grey[850] : Colors.grey.shade100,
               borderRadius: BorderRadius.circular(Sizes.size20),
             ),
             child: Column(
@@ -45,7 +45,7 @@ class PostMoreMenu extends StatelessWidget {
                 Divider(
                   height: 0,
                   thickness: 1,
-                  color: isDarkMode(context)
+                  color: isDarkMode(ref)
                       ? Colors.grey.shade700
                       : Colors.grey.shade300,
                 ),
@@ -58,8 +58,7 @@ class PostMoreMenu extends StatelessWidget {
             width: double.infinity,
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
-              color:
-                  isDarkMode(context) ? Colors.grey[850] : Colors.grey.shade100,
+              color: isDarkMode(ref) ? Colors.grey[850] : Colors.grey.shade100,
               borderRadius: BorderRadius.circular(Sizes.size20),
             ),
             child: Column(
@@ -68,7 +67,7 @@ class PostMoreMenu extends StatelessWidget {
                 Divider(
                   height: 0,
                   thickness: 1,
-                  color: isDarkMode(context)
+                  color: isDarkMode(ref)
                       ? Colors.grey.shade700
                       : Colors.grey.shade300,
                 ),

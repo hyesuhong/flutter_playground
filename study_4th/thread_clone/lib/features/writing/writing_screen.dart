@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:thread_clone/common/button/custom_icon_button.dart';
@@ -10,14 +11,14 @@ import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/camera/camera_screen.dart';
 import 'package:thread_clone/utils/ui.dart';
 
-class WritingScreen extends StatefulWidget {
+class WritingScreen extends ConsumerStatefulWidget {
   const WritingScreen({super.key});
 
   @override
-  State<WritingScreen> createState() => _WritingScreenState();
+  ConsumerState<WritingScreen> createState() => _WritingScreenState();
 }
 
-class _WritingScreenState extends State<WritingScreen> {
+class _WritingScreenState extends ConsumerState<WritingScreen> {
   bool _isFilled = false;
   List<XFile>? _pictures;
 
@@ -60,9 +61,8 @@ class _WritingScreenState extends State<WritingScreen> {
         backgroundColor: Colors.transparent,
         shape: Border(
           bottom: BorderSide(
-            color: isDarkMode(context)
-                ? Colors.grey.shade700
-                : Colors.grey.shade300,
+            color:
+                isDarkMode(ref) ? Colors.grey.shade700 : Colors.grey.shade300,
           ),
         ),
         leading: GestureDetector(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thread_clone/constants/gaps.dart';
@@ -6,18 +7,17 @@ import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/privacy/widgets/text_list_tile.dart';
 import 'package:thread_clone/utils/ui.dart';
 
-class PrivacyScreen extends StatefulWidget {
+class PrivacyScreen extends ConsumerStatefulWidget {
   const PrivacyScreen({super.key});
 
   @override
-  State<PrivacyScreen> createState() => _PrivacyScreenState();
+  ConsumerState<PrivacyScreen> createState() => _PrivacyScreenState();
 }
 
-class _PrivacyScreenState extends State<PrivacyScreen> {
+class _PrivacyScreenState extends ConsumerState<PrivacyScreen> {
   bool _isPrivate = false;
 
   void _onBackTap(BuildContext context) {
-    // Navigator.of(context).pop();
     context.pop();
   }
 
@@ -78,13 +78,12 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
                   title: const Text("Private profile"),
                   secondary: const FaIcon(FontAwesomeIcons.lock),
                   inactiveThumbColor:
-                      isDarkMode(context) ? Colors.black : Colors.white,
-                  inactiveTrackColor: isDarkMode(context)
+                      isDarkMode(ref) ? Colors.black : Colors.white,
+                  inactiveTrackColor: isDarkMode(ref)
                       ? Colors.grey.shade800
                       : Colors.grey.shade500,
-                  activeTrackColor: isDarkMode(context)
-                      ? Colors.grey.shade500
-                      : Colors.black87,
+                  activeTrackColor:
+                      isDarkMode(ref) ? Colors.grey.shade500 : Colors.black87,
                 ),
                 const TextListTile(
                   title: "Mentions",
