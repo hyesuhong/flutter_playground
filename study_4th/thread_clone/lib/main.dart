@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +8,8 @@ import 'package:thread_clone/features/settings/view_models/settings_config_vm.da
 import 'package:thread_clone/router.dart';
 import 'package:thread_clone/utils/ui.dart';
 
+import 'firebase_options.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -14,6 +17,11 @@ Future<void> main() async {
 
   final preferences = await SharedPreferences.getInstance();
   final repository = SettingsConfigRepository(preferences);
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(
     ProviderScope(
@@ -76,7 +84,7 @@ class MyApp extends ConsumerWidget {
         ),
         useMaterial3: true,
       ),
-      routerConfig: router,
+      routerConfig: ref.watch(routerProvider),
     );
   }
 }

@@ -5,15 +5,18 @@ import 'package:thread_clone/utils/ui.dart';
 
 class FormButton extends ConsumerWidget {
   final String label;
+  final void Function()? onTap;
 
   const FormButton({
     super.key,
     required this.label,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
+      onTap: onTap,
       child: Container(
         height: Sizes.size40,
         alignment: Alignment.center,

@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/authentication/repos/authentication_repository.dart';
 import 'package:thread_clone/features/settings/models/settings_config_model.dart';
 import 'package:thread_clone/features/settings/view_models/settings_config_vm.dart';
 import 'package:thread_clone/utils/ui.dart';
@@ -28,7 +29,11 @@ class SettingsScreen extends ConsumerWidget {
           title: const Text("Log out of your accout?"),
           actions: [
             CupertinoDialogAction(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                ref.read(authRepo).signOut();
+                context.go("/sign-in");
+              },
+              isDestructiveAction: true,
               child: const Text(
                 "Log out",
                 style: TextStyle(
