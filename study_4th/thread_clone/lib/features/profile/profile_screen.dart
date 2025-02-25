@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:thread_clone/common/user_profile/models/user_model.dart';
 import 'package:thread_clone/common/user_profile/user_profile.dart';
 import 'package:thread_clone/constants/gaps.dart';
+import 'package:thread_clone/constants/routes.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/home/models/post_model.dart';
 import 'package:thread_clone/features/home/widgets/post_content.dart';
@@ -26,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   void _onMenuTap(BuildContext context) {
-    context.push('/settings');
+    context.pushNamed(Routes.settings.name);
   }
 
   @override

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thread_clone/constants/gaps.dart';
+import 'package:thread_clone/constants/routes.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/authentication/repos/authentication_repository.dart';
 import 'package:thread_clone/features/settings/models/settings_config_model.dart';
@@ -18,7 +19,7 @@ class SettingsScreen extends ConsumerWidget {
   }
 
   void _onPrivacyTap(BuildContext context) {
-    context.push('/settings/privacy');
+    context.pushNamed(Routes.privacy.name);
   }
 
   void _onLogoutTap(BuildContext context, WidgetRef ref) {
@@ -31,7 +32,7 @@ class SettingsScreen extends ConsumerWidget {
             CupertinoDialogAction(
               onPressed: () {
                 ref.read(authRepo).signOut();
-                context.go("/sign-in");
+                context.goNamed(Routes.signIn.name);
               },
               isDestructiveAction: true,
               child: const Text(

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thread_clone/constants/gaps.dart';
+import 'package:thread_clone/constants/routes.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/authentication/view_models/sign_up_view_model.dart';
 import 'package:thread_clone/features/authentication/widgets/auth_text_field.dart';
@@ -118,7 +119,7 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      context.go('/sign-in');
+                      context.goNamed(Routes.signIn.name);
                     },
                     child: Container(
                       alignment: Alignment.bottomCenter,

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:thread_clone/constants/routes.dart';
 import 'package:thread_clone/features/authentication/repos/authentication_repository.dart';
 
 class SignUpViewModel extends AsyncNotifier<void> {
@@ -28,7 +29,7 @@ class SignUpViewModel extends AsyncNotifier<void> {
       print(state.error);
     } else {
       if (context.mounted) {
-        context.go('/');
+        context.goNamed(Routes.home.name);
       }
     }
   }
