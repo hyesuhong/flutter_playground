@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thread_clone/features/settings/repos/settings_config_repo.dart';
 import 'package:thread_clone/features/settings/view_models/settings_config_vm.dart';
@@ -42,10 +43,12 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       title: 'Thread clone',
+      routerConfig: ref.watch(routerProvider),
       themeMode: isDarkMode(ref) ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         brightness: Brightness.light,
+        textTheme: GoogleFonts.notoSansTextTheme(Theme.of(context).textTheme),
         appBarTheme: const AppBarTheme(
           color: Colors.white,
           surfaceTintColor: Colors.white,
@@ -66,6 +69,7 @@ class MyApp extends ConsumerWidget {
       darkTheme: ThemeData(
         scaffoldBackgroundColor: Colors.black87,
         brightness: Brightness.dark,
+        textTheme: GoogleFonts.notoSansTextTheme(Theme.of(context).textTheme),
         appBarTheme: const AppBarTheme(
           color: Colors.black87,
           surfaceTintColor: Colors.transparent,
@@ -84,7 +88,6 @@ class MyApp extends ConsumerWidget {
         ),
         useMaterial3: true,
       ),
-      routerConfig: ref.watch(routerProvider),
     );
   }
 }
