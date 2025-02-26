@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:thread_clone/common/post/models/post_model.dart';
+import 'package:thread_clone/common/post/widgets/post_list_tile.dart';
 import 'package:thread_clone/constants/sizes.dart';
-import 'package:thread_clone/features/home/models/post_model.dart';
-import 'package:thread_clone/features/home/widgets/post_content.dart';
 
 List<PostModel> _posts = List.generate(
   20,
@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
           shrinkWrap: true,
           itemBuilder: (context, index) {
             PostModel post = _posts[index];
-            return PostContent(
+            return PostListTile(
               profileUrl: post.user.profileUrl,
               username: post.user.username,
               createdAt: post.createdAt,

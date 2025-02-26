@@ -31,16 +31,11 @@ class PostReportMenu extends ConsumerWidget {
                 isDarkMode(ref) ? Colors.grey.shade700 : Colors.grey.shade300,
           ),
         ),
-        title: Container(
-          width: double.infinity,
-          height: Sizes.size48,
-          alignment: Alignment.center,
-          child: const Text(
-            "Report",
-            style: TextStyle(
-              fontSize: Sizes.size20,
-              fontWeight: FontWeight.bold,
-            ),
+        title: const Text(
+          "Report",
+          style: TextStyle(
+            fontSize: Sizes.size20,
+            fontWeight: FontWeight.bold,
           ),
         ),
         automaticallyImplyLeading: false,
