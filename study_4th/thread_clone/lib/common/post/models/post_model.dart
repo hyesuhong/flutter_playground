@@ -1,16 +1,17 @@
-import 'package:faker/faker.dart';
-import 'package:thread_clone/common/user_profile/models/user_model.dart';
-
 class PostModel {
-  final UserModel user;
-  final DateTime createdAt;
+  final String creatorUid;
+  final String creatorUsername;
+  final String? id;
+  final int createdAt;
   final String contentText;
   final List<String> contentImageUrls;
   final int replies;
   final int likes;
 
   PostModel({
-    required this.user,
+    this.creatorUid = "",
+    this.creatorUsername = "anonmyous",
+    this.id,
     required this.createdAt,
     required this.contentText,
     required this.contentImageUrls,
@@ -18,27 +19,27 @@ class PostModel {
     required this.likes,
   });
 
-  factory PostModel.generate() {
-    final faker = Faker();
+  PostModel.fromJson({
+    required Map<String, dynamic> json,
+    required String postId,
+  })  : id = postId,
+        creatorUid = "",
+        creatorUsername = "anonmyous",
+        createdAt = json["createdAt"],
+        contentText = json["contentText"],
+        contentImageUrls = json["contentImageUrls"],
+        replies = json["replies"],
+        likes = json["likes"];
 
-    List<String> images =
-        List.generate(faker.randomGenerator.integer(4), (index) {
-      int imageNumber = faker.randomGenerator.integer(1000);
-      return faker.image.loremPicsum(random: imageNumber);
-    });
-
-    UserModel generatedUser = UserModel.generate();
-
-    return PostModel(
-      user: generatedUser,
-      createdAt: faker.date.dateTime(
-        minYear: 2024,
-        maxYear: 2025,
-      ),
-      contentText: faker.lorem.sentence(),
-      contentImageUrls: images,
-      replies: faker.randomGenerator.integer(50),
-      likes: faker.randomGenerator.integer(100),
-    );
+  Map<String, dynamic> toJson() {
+    return {
+      "creatorUid": creatorUid,
+      "creatorUsername": creatorUsername,
+      "createdAt": createdAt,
+      "contentText": contentText,
+      "contentImageUrls": contentImageUrls,
+      "replies": replies,
+      "likes": likes,
+    };
   }
 }

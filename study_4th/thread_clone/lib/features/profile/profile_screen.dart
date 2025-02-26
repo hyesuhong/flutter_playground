@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:thread_clone/common/post/models/post_model.dart';
 import 'package:thread_clone/common/post/widgets/post_list_tile.dart';
 import 'package:thread_clone/common/user_profile/models/user_model.dart';
 import 'package:thread_clone/common/user_profile/user_profile.dart';
@@ -12,8 +11,8 @@ import 'package:thread_clone/constants/routes.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/profile/widgets/persistent_tab_bar.dart';
 
-var _posts = List.generate(20, (index) => PostModel.generate());
-var _replies = List.generate(20, (index) => PostModel.generate());
+var _posts = [];
+var _replies = [];
 
 var _user = UserModel(
   profileUrl:

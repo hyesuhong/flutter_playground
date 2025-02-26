@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:thread_clone/common/button/custom_icon_button.dart';
+import 'package:thread_clone/common/post/view_models/create_post_view_model.dart';
 import 'package:thread_clone/common/user_profile/user_profile.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
@@ -19,7 +20,7 @@ class WritingScreen extends ConsumerStatefulWidget {
 }
 
 class _WritingScreenState extends ConsumerState<WritingScreen> {
-  bool _isFilled = false;
+  String _content = "";
   List<XFile>? _pictures;
 
   void _onCancelTap(BuildContext context) {
@@ -27,7 +28,7 @@ class _WritingScreenState extends ConsumerState<WritingScreen> {
   }
 
   void _onInputChange(String value) {
-    _isFilled = value.isNotEmpty;
+    _content = value;
     setState(() {});
   }
 
@@ -44,6 +45,12 @@ class _WritingScreenState extends ConsumerState<WritingScreen> {
 
     _pictures = pictures;
     setState(() {});
+  }
+
+  void _onPostTap() async {
+    ref
+        .read(createPostProvider.notifier)
+        .createPost(context, contentText: _content);
   }
 
   @override
@@ -179,8 +186,9 @@ class _WritingScreenState extends ConsumerState<WritingScreen> {
           alignment: Alignment.centerRight,
           child: AnimatedOpacity(
             duration: const Duration(milliseconds: 300),
-            opacity: _isFilled ? 1 : 0.3,
+            opacity: _content.isNotEmpty ? 1 : 0.3,
             child: GestureDetector(
+              onTap: _onPostTap,
               child: Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: Sizes.size20,

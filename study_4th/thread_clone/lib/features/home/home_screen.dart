@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:thread_clone/common/post/models/post_model.dart';
-import 'package:thread_clone/common/post/widgets/post_list_tile.dart';
 import 'package:thread_clone/constants/sizes.dart';
 
-List<PostModel> _posts = List.generate(
-  20,
-  (index) => PostModel.generate(),
-);
+List<PostModel> _posts = [];
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -28,15 +24,16 @@ class HomeScreen extends StatelessWidget {
           shrinkWrap: true,
           itemBuilder: (context, index) {
             PostModel post = _posts[index];
-            return PostListTile(
-              profileUrl: post.user.profileUrl,
-              username: post.user.username,
-              createdAt: post.createdAt,
-              contentText: post.contentText,
-              contentImageUrls: post.contentImageUrls,
-              replies: post.replies,
-              likes: post.likes,
-            );
+            return SizedBox();
+            // return PostListTile(
+            //   profileUrl: post.user.profileUrl,
+            //   username: post.user.username,
+            //   createdAt: post.createdAt,
+            //   contentText: post.contentText,
+            //   contentImageUrls: post.contentImageUrls,
+            //   replies: post.replies,
+            //   likes: post.likes,
+            // );
           },
           separatorBuilder: (context, index) {
             return const Divider();
