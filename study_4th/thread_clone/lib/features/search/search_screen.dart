@@ -2,21 +2,44 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:thread_clone/common/user_profile/models/user_model.dart';
+import 'package:thread_clone/common/post/models/post_model.dart';
+import 'package:thread_clone/common/post/view_models/search_view_model.dart';
+import 'package:thread_clone/common/post/widgets/post_list_tile.dart';
 import 'package:thread_clone/constants/sizes.dart';
-import 'package:thread_clone/features/search/widgets/search_user_tile.dart';
 import 'package:thread_clone/utils/ui.dart';
 
-List<UserModel> _users = List.generate(
-  20,
-  (index) => UserModel.generate(),
-);
-
-class SearchScreen extends ConsumerWidget {
+class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends ConsumerState<SearchScreen> {
+  final TextEditingController _controller = TextEditingController();
+  List<PostModel> _searchResult = [];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+
+    super.dispose();
+  }
+
+  void _onInputChange(String value) async {
+    var list = await ref.read(searchProvider.notifier).getPostsByKeyword(value);
+
+    _searchResult = list ?? [];
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -41,6 +64,8 @@ class SearchScreen extends ConsumerWidget {
             SizedBox(
               height: Sizes.size40,
               child: CupertinoTextField(
+                controller: _controller,
+                onChanged: _onInputChange,
                 prefix: Container(
                   width: Sizes.size36,
                   height: Sizes.size40,
@@ -51,7 +76,7 @@ class SearchScreen extends ConsumerWidget {
                     color: Colors.grey.shade500,
                   ),
                 ),
-                placeholder: "Search",
+                placeholder: "Search posts by keyword",
                 placeholderStyle: TextStyle(
                   color: Colors.grey.shade500,
                 ),
@@ -68,16 +93,20 @@ class SearchScreen extends ConsumerWidget {
             ),
             Expanded(
               child: ListView.builder(
+                itemCount: _searchResult.length,
                 itemBuilder: (context, index) {
-                  UserModel user = _users[index];
-                  return SearchUserTile(
-                    username: user.username,
-                    description: user.description,
-                    followers: user.followers,
-                    profileUrl: user.profileUrl,
+                  PostModel post = _searchResult[index];
+                  return PostListTile(
+                    profileUrl: "https://i.pravatar.cc/150?img=10",
+                    username: post.creatorUsername,
+                    createdAt:
+                        DateTime.fromMillisecondsSinceEpoch(post.createdAt),
+                    contentText: post.contentText,
+                    contentImageUrls: post.contentImageUrls,
+                    replies: post.replies,
+                    likes: post.likes,
                   );
                 },
-                itemCount: _users.length,
               ),
             ),
           ],

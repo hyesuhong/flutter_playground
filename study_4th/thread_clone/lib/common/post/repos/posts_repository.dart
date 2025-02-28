@@ -23,6 +23,22 @@ class PostsRepository {
 
     return query.get();
   }
+
+  // search posts by keyword
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getPostsByKeyword(
+      String keyword) async {
+    final query =
+        _db.collection(_collectionPath).orderBy("createdAt", descending: true);
+
+    final result = query.get().then((value) {
+      var target = value.docs
+          .where((val) => val["contentText"].contains(keyword))
+          .toList();
+      return target;
+    });
+
+    return result;
+  }
 }
 
 final postsRepo = Provider((ref) => PostsRepository());
