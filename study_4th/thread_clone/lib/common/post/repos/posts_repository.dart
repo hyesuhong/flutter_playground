@@ -18,10 +18,8 @@ class PostsRepository {
 
   // get post documents
   Future<QuerySnapshot<Map<String, dynamic>>> getPosts() async {
-    final query = _db
-        .collection(_collectionPath)
-        .orderBy("createdAt", descending: true)
-        .limit(2);
+    final query =
+        _db.collection(_collectionPath).orderBy("createdAt", descending: true);
 
     return query.get();
   }

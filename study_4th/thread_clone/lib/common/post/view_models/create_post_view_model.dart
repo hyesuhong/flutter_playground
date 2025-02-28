@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thread_clone/common/post/models/post_model.dart';
 import 'package:thread_clone/common/post/repos/posts_repository.dart';
+import 'package:thread_clone/common/post/view_models/timeline_view_model.dart';
 
 class CreatePostViewModel extends AsyncNotifier<void> {
   late final PostsRepository _repository;
@@ -22,13 +23,17 @@ class CreatePostViewModel extends AsyncNotifier<void> {
     state = await AsyncValue.guard(() async {
       await _repository.savePost(PostModel(
         contentText: contentText,
-        contentImageUrls: [],
-        createdAt: DateTime.now().millisecondsSinceEpoch,
+        createdAt:
+            DateTime.now().millisecondsSinceEpoch - (1000 * 60 * 60 * 24),
         replies: 0,
         likes: 0,
       ));
 
-      context.pop();
+      ref.read(timelineProvider.notifier).refresh();
+
+      if (context.mounted) {
+        context.pop();
+      }
     });
   }
 }

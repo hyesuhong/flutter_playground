@@ -4,9 +4,11 @@ class PostModel {
   final String? id;
   final int createdAt;
   final String contentText;
-  final List<String> contentImageUrls;
+  // final List<String> contentImageUrls;
+  final bool? hasImages;
   final int replies;
   final int likes;
+  List<String> contentImageUrls = [];
 
   PostModel({
     this.creatorUid = "",
@@ -14,7 +16,8 @@ class PostModel {
     this.id,
     required this.createdAt,
     required this.contentText,
-    required this.contentImageUrls,
+    // required this.contentImageUrls,
+    this.hasImages = false,
     required this.replies,
     required this.likes,
   });
@@ -27,7 +30,8 @@ class PostModel {
         creatorUsername = "anonmyous",
         createdAt = json["createdAt"],
         contentText = json["contentText"],
-        contentImageUrls = json["contentImageUrls"],
+        // contentImageUrls = json["contentImageUrls"],
+        hasImages = json["hasImages"],
         replies = json["replies"],
         likes = json["likes"];
 
@@ -37,7 +41,8 @@ class PostModel {
       "creatorUsername": creatorUsername,
       "createdAt": createdAt,
       "contentText": contentText,
-      "contentImageUrls": contentImageUrls,
+      // "contentImageUrls": contentImageUrls,
+      "hasImages": hasImages,
       "replies": replies,
       "likes": likes,
     };
