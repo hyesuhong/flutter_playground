@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:thread_clone/common/post/models/post_model.dart';
+import 'package:thread_clone/features/post/models/post_model.dart';
 
 class PostsRepository {
   final String _collectionPath = "posts";

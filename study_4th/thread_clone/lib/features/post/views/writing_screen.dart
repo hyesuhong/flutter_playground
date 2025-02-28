@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:thread_clone/common/button/custom_icon_button.dart';
-import 'package:thread_clone/common/post/view_models/create_post_view_model.dart';
-import 'package:thread_clone/common/user_profile/user_profile.dart';
+import 'package:thread_clone/common_widgets/button/custom_icon_button.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/camera/camera_screen.dart';
+import 'package:thread_clone/features/post/view_models/create_post_view_model.dart';
+import 'package:thread_clone/features/profile/widgets/user_profile.dart';
 import 'package:thread_clone/utils/ui.dart';
 
 class WritingScreen extends ConsumerStatefulWidget {

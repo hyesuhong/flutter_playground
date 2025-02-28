@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:thread_clone/common/button/custom_icon_button.dart';
-import 'package:thread_clone/common/post/widgets/post_more_menu.dart';
-import 'package:thread_clone/common/user_profile/user_profile.dart';
+import 'package:thread_clone/common_widgets/button/custom_icon_button.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/post/widgets/post_more_menu.dart';
+import 'package:thread_clone/features/profile/widgets/user_profile.dart';
 import 'package:thread_clone/utils/format.dart';
 
 class PostListTile extends StatelessWidget {

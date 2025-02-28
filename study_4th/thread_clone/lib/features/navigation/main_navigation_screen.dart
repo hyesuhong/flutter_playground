@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:thread_clone/common/main_navigation/models/tab_model.dart';
-import 'package:thread_clone/common/main_navigation/widgets/nav_tab.dart';
+import 'package:thread_clone/constants/routes.dart';
 import 'package:thread_clone/constants/sizes.dart';
-import 'package:thread_clone/features/writing/writing_screen.dart';
+import 'package:thread_clone/features/navigation/models/tab_model.dart';
+import 'package:thread_clone/features/navigation/widgets/nav_tab.dart';
+import 'package:thread_clone/features/post/views/writing_screen.dart';
 
 List<TabModel> _tabs = [
   TabModel(
-    name: "Home",
-    path: '/',
+    name: Routes.home.name,
+    path: Routes.home.path,
     icon: FontAwesomeIcons.house,
   ),
   TabModel(
-    name: "Search",
-    path: '/search',
+    name: Routes.search.name,
+    path: Routes.search.path,
     icon: FontAwesomeIcons.magnifyingGlass,
   ),
   TabModel(
@@ -23,13 +24,13 @@ List<TabModel> _tabs = [
     icon: FontAwesomeIcons.pen,
   ),
   TabModel(
-    name: "Activity",
-    path: '/activity',
+    name: Routes.activity.name,
+    path: Routes.activity.path,
     icon: FontAwesomeIcons.heart,
   ),
   TabModel(
-    name: "Profile",
-    path: '/profile',
+    name: Routes.profile.name,
+    path: Routes.profile.path,
     icon: FontAwesomeIcons.user,
   ),
 ];

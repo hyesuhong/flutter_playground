@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:thread_clone/common/post/widgets/post_more_list.dart';
-import 'package:thread_clone/common/post/widgets/post_report_menu.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/post/widgets/post_more_list.dart';
+import 'package:thread_clone/features/post/widgets/post_report_menu.dart';
 
 class PostMoreMenu extends ConsumerWidget {
   const PostMoreMenu({super.key});

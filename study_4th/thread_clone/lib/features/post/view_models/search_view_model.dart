@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:thread_clone/common/post/models/post_model.dart';
-import 'package:thread_clone/common/post/repos/posts_repository.dart';
+import 'package:thread_clone/features/post/models/post_model.dart';
+import 'package:thread_clone/features/post/repos/posts_repository.dart';
 
 class SearchViewModel extends AsyncNotifier<List<PostModel>?> {
   late final PostsRepository _repository;

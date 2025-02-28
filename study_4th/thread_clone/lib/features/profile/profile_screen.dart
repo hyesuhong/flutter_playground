@@ -3,13 +3,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:thread_clone/common/post/widgets/post_list_tile.dart';
-import 'package:thread_clone/common/user_profile/models/user_model.dart';
-import 'package:thread_clone/common/user_profile/user_profile.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/routes.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/post/widgets/post_list_tile.dart';
+import 'package:thread_clone/features/profile/models/user_model.dart';
 import 'package:thread_clone/features/profile/widgets/persistent_tab_bar.dart';
+import 'package:thread_clone/features/profile/widgets/user_profile.dart';
 
 var _posts = [];
 var _replies = [];

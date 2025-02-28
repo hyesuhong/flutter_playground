@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:thread_clone/common/user_profile/models/user_model.dart';
-import 'package:thread_clone/common/user_profile/user_profile.dart';
 import 'package:thread_clone/features/activity/models/activity_model.dart';
+import 'package:thread_clone/features/profile/models/user_model.dart';
+import 'package:thread_clone/features/profile/widgets/user_profile.dart';
 
 class ActivityTile extends StatelessWidget {
   final UserModel user;

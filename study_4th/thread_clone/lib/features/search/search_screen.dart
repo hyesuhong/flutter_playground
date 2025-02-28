@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:thread_clone/common/post/models/post_model.dart';
-import 'package:thread_clone/common/post/view_models/search_view_model.dart';
-import 'package:thread_clone/common/post/widgets/post_list_tile.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/post/models/post_model.dart';
+import 'package:thread_clone/features/post/view_models/search_view_model.dart';
+import 'package:thread_clone/features/post/widgets/post_list_tile.dart';
 import 'package:thread_clone/utils/ui.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {

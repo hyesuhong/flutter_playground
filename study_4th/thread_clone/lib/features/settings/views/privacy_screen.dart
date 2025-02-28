@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
-import 'package:thread_clone/features/privacy/widgets/text_list_tile.dart';
+import 'package:thread_clone/features/settings/widgets/text_list_tile.dart';
 import 'package:thread_clone/utils/ui.dart';
 
 class PrivacyScreen extends ConsumerStatefulWidget {

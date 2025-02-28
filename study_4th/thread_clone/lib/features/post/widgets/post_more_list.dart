@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:thread_clone/common/post/widgets/post_more_item.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/post/widgets/post_more_item.dart';
 import 'package:thread_clone/utils/ui.dart';
 
 typedef MenuItem = ({

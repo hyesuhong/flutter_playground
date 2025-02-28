@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:thread_clone/common/post/models/post_model.dart';
-import 'package:thread_clone/common/post/repos/posts_repository.dart';
-import 'package:thread_clone/common/post/view_models/timeline_view_model.dart';
+import 'package:thread_clone/features/post/models/post_model.dart';
+import 'package:thread_clone/features/post/repos/posts_repository.dart';
+import 'package:thread_clone/features/post/view_models/timeline_view_model.dart';
 
 class CreatePostViewModel extends AsyncNotifier<void> {
   late final PostsRepository _repository;

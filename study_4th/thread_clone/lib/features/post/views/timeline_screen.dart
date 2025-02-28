@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:thread_clone/common/post/models/post_model.dart';
-import 'package:thread_clone/common/post/view_models/timeline_view_model.dart';
-import 'package:thread_clone/common/post/widgets/post_list_tile.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/post/models/post_model.dart';
+import 'package:thread_clone/features/post/view_models/timeline_view_model.dart';
+import 'package:thread_clone/features/post/widgets/post_list_tile.dart';
 
-class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({super.key});
+class TimelineScreen extends ConsumerStatefulWidget {
+  const TimelineScreen({super.key});
 
   @override
-  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<TimelineScreen> createState() => _TimelineScreenState();
 }
 
-class _HomeScreenState extends ConsumerState<HomeScreen> {
+class _TimelineScreenState extends ConsumerState<TimelineScreen> {
   Future<void> _onRefresh() {
     return ref.watch(timelineProvider.notifier).refresh();
   }

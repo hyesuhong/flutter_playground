@@ -1,15 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:thread_clone/common/main_navigation/main_navigation_screen.dart';
 import 'package:thread_clone/constants/routes.dart';
 import 'package:thread_clone/features/activity/activity_screen.dart';
 import 'package:thread_clone/features/authentication/repos/authentication_repository.dart';
 import 'package:thread_clone/features/authentication/views/create_account_screen.dart';
 import 'package:thread_clone/features/authentication/views/sign_in_screen.dart';
-import 'package:thread_clone/features/home/home_screen.dart';
-import 'package:thread_clone/features/privacy/privacy_screen.dart';
+import 'package:thread_clone/features/navigation/main_navigation_screen.dart';
+import 'package:thread_clone/features/post/views/timeline_screen.dart';
 import 'package:thread_clone/features/profile/profile_screen.dart';
 import 'package:thread_clone/features/search/search_screen.dart';
+import 'package:thread_clone/features/settings/views/privacy_screen.dart';
 import 'package:thread_clone/features/settings/views/settings_screen.dart';
 
 final routerProvider = Provider((ref) {
@@ -36,7 +36,7 @@ final routerProvider = Provider((ref) {
             path: Routes.home.path,
             name: Routes.home.name,
             pageBuilder: (context, state) => const NoTransitionPage(
-              child: HomeScreen(),
+              child: TimelineScreen(),
             ),
           ),
           GoRoute(
