@@ -88,7 +88,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     Icons.favorite,
                     color: Colors.red[300],
                   )
-                : Icon(Icons.favorite_outline),
+                : const Icon(Icons.favorite_outline),
           )
         ],
       ),

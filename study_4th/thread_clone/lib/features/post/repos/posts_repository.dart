@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:thread_clone/features/post/models/post_model.dart';
 
@@ -7,7 +6,6 @@ class PostsRepository {
   final String _collectionPath = "posts";
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
-  final FirebaseStorage _storage = FirebaseStorage.instance;
 
   // create post document
   Future<void> savePost(PostModel data) async {

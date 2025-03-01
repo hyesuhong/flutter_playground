@@ -39,7 +39,6 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen> {
       return;
     }
 
-    final state = ref.read(signUpForm.notifier).state;
     ref.read(signUpForm.notifier).state = {
       "email": _email,
       "password": _password,

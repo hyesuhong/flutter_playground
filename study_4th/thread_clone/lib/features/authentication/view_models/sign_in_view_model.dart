@@ -24,7 +24,7 @@ class SignInViewModel extends AsyncNotifier<void> {
       () async => await _repository.signIn(email, password),
     );
     if (state.hasError) {
-      print(state.error);
+      // display error message
     } else {
       if (context.mounted) {
         context.goNamed(Routes.home.name);
